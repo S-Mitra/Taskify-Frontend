@@ -9,7 +9,10 @@ const TaskDetails = () => {
 
     useEffect(() => {
         axiosInstance.get(`/tasks/${id}`)
-            .then(response => setTask(response.data))
+            .then(response => {
+                const taskDetails = response.data.task;
+                setTask({...taskDetails, id: taskDetails["_id"], dueDate: taskDetails?.dueDate ? new Date(taskDetails.dueDate).toLocaleDateString() : "No Due Date"})
+            })
             .catch(error => console.error("Error fetching task", error));
     }, [id]);
 
