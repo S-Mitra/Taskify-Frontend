@@ -11,7 +11,11 @@ const TaskDetails = () => {
         axiosInstance.get(`/tasks/${id}`)
             .then(response => {
                 const taskDetails = response.data.task;
-                setTask({...taskDetails, id: taskDetails["_id"], dueDate: taskDetails?.dueDate ? new Date(taskDetails.dueDate).toLocaleDateString() : "No Due Date"})
+                setTask({
+                    ...taskDetails, 
+                    id: taskDetails["_id"], 
+                    dueDate: taskDetails?.dueDate ? new Date(taskDetails.dueDate).toISOString().split("T")[0] : null
+                })
             })
             .catch(error => console.error("Error fetching task", error));
     }, [id]);

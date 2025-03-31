@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { TextField, Button, Container, Paper, Typography, Select, MenuItem, FormControl, InputLabel, Grid } from "@mui/material";
 import axiosInstance from "../../axiosInstance";
 
 const TaskForm = ({ task = {}, isEditing = false }) => {
@@ -32,21 +33,81 @@ const TaskForm = ({ task = {}, isEditing = false }) => {
     };
 
     return (
-        <form onSubmit={handleSubmit} className="task-form">
-            <input type="text" name="title" placeholder="Title" value={formData.title} onChange={handleChange} required />
-            <textarea name="description" placeholder="Description" value={formData.description} onChange={handleChange} />
-            <input type="date" name="dueDate" value={formData.dueDate} onChange={handleChange} />
-            <select name="priority" value={formData.priority} onChange={handleChange}>
-                <option value="Low">Low</option>
-                <option value="Medium">Medium</option>
-                <option value="High">High</option>
-            </select>
-            <select name="status" value={formData.status} onChange={handleChange}>
-                <option value="Pending">Pending</option>
-                <option value="Completed">Completed</option>
-            </select>
-            <button type="submit">{isEditing ? "Update Task" : "Create Task"}</button>
-        </form>
+        <Container maxWidth="sm">
+            <Paper sx={{ p: 3, mt: 3 }}>
+                <Typography variant="h5">{isEditing ? "Update Task" : "Create Task"}</Typography>
+                <form onSubmit={handleSubmit}>
+                    <TextField
+                        required
+                        fullWidth
+                        label="Task Title"
+                        name="title"
+                        value={formData.title}
+                        onChange={handleChange}
+                        sx={{ my: 2 }}
+                    />
+                    <TextField
+                        required
+                        fullWidth
+                        multiline
+                        label="Task Description"
+                        name="description"
+                        value={formData.description}
+                        onChange={handleChange}
+                        sx={{ my: 2 }}
+                    />
+                    <TextField
+                        required
+                        fullWidth
+                        type="date"
+                        label="Due Date"
+                        name="dueDate"
+                        InputLabelProps={{ shrink: true }}
+                        value={formData.dueDate}
+                        onChange={handleChange}
+                        sx={{ my: 2 }}
+                    />
+                    <FormControl fullWidth sx={{ my: 2 }}>
+                        <InputLabel id="demo-simple-select-label">Priority</InputLabel>
+                        <Select
+                            value={formData.priority}
+                            label="Priority"
+                            name="priority"
+                            onChange={handleChange}
+                            required
+                        >
+                            <MenuItem value={"Low"}>Low</MenuItem>
+                            <MenuItem value={"Medium"}>Medium</MenuItem>
+                            <MenuItem value={"High"}>High</MenuItem>
+                        </Select>
+                    </FormControl>
+                    <FormControl fullWidth sx={{ my: 2 }}>
+                        <InputLabel id="demo-simple-select-label">Status</InputLabel>
+                        <Select
+                            value={formData.status}
+                            label="Status"
+                            name="status"
+                            onChange={handleChange}
+                            required
+                        >
+                            <MenuItem value={"Pending"}>Pending</MenuItem>
+                            <MenuItem value={"Completed"}>Completed</MenuItem>
+
+                        </Select>
+                    </FormControl>
+                    <Grid item xs={12} sm={2} sx={{
+                        justifyContent: 'flex-end',
+                        flexDirection: 'row',
+                        display: 'flex',
+                        width: '100%'
+                    }}>
+                        <Button type="submit" variant="contained" color="primary">
+                            {isEditing ? "Update Task" : "Create Task"}
+                        </Button>
+                    </Grid>
+                </form>
+            </Paper>
+        </Container>
     );
 };
 

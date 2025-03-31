@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { FormControl, InputLabel, MenuItem, Select, Button, Box, Grid } from "@mui/material";
 
 const TaskFilter = ({ setFilters }) => {
   const [selectedStatus, setSelectedStatus] = useState("");
@@ -12,24 +13,49 @@ const TaskFilter = ({ setFilters }) => {
   };
 
   return (
-    <div>
-      <label>Status:</label>
-      <select value={selectedStatus} onChange={(e) => setSelectedStatus(e.target.value)}>
-        <option value="">All</option>
-        <option value="Pending">Pending</option>
-        <option value="Completed">Completed</option>
-      </select>
+    <Box sx={{ my: 2, p: 2, bgcolor: "background.paper", borderRadius: 2, boxShadow: 2 }}>
+      <Grid container spacing={2} alignItems="center">
+        
+        {/* Status Filter */}
+        <Grid item xs={12} sm={5}>
+          <FormControl fullWidth>
+            <InputLabel>Status</InputLabel>
+            <Select
+              value={selectedStatus}
+              onChange={(e) => setSelectedStatus(e.target.value)}
+            >
+              <MenuItem value="">All</MenuItem>
+              <MenuItem value="Pending">Pending</MenuItem>
+              <MenuItem value="Completed">Completed</MenuItem>
+            </Select>
+          </FormControl>
+        </Grid>
 
-      <label>Priority:</label>
-      <select value={selectedPriority} onChange={(e) => setSelectedPriority(e.target.value)}>
-        <option value="">All</option>
-        <option value="Low">Low</option>
-        <option value="Medium">Medium</option>
-        <option value="High">High</option>
-      </select>
+        {/* Priority Filter */}
+        <Grid item xs={12} sm={5}>
+          <FormControl fullWidth>
+            <InputLabel>Priority</InputLabel>
+            <Select
+              value={selectedPriority}
+              onChange={(e) => setSelectedPriority(e.target.value)}
+            >
+              <MenuItem value="">All</MenuItem>
+              <MenuItem value="Low">Low</MenuItem>
+              <MenuItem value="Medium">Medium</MenuItem>
+              <MenuItem value="High">High</MenuItem>
+            </Select>
+          </FormControl>
+        </Grid>
 
-      <button onClick={handleFilterChange}>Apply Filters</button>
-    </div>
+        {/* Apply Filters Button */}
+        <Grid item xs={12} sm={2}>
+          <Button variant="contained" color="primary" fullWidth onClick={handleFilterChange}>
+            Apply
+          </Button>
+        </Grid>
+
+      </Grid>
+    </Box>
   );
 };
 
