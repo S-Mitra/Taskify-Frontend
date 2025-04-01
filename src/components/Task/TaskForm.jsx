@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { TextField, Button, Container, Paper, Typography, Select, MenuItem, FormControl, InputLabel, Grid } from "@mui/material";
-import axiosInstance from "../../axiosInstance";
+import axiosInstance from "../../../axiosInstance";
 
 const TaskForm = ({ task = {}, isEditing = false }) => {
     const [formData, setFormData] = useState({
@@ -33,7 +33,10 @@ const TaskForm = ({ task = {}, isEditing = false }) => {
     };
 
     return (
-        <Container maxWidth="sm">
+        <Container sx={{marginTop: "20px"}} maxWidth="sm">
+            <Button type="submit" variant="contained" color="primary" onClick={() => navigate(`/`)}>
+                Back
+            </Button>
             <Paper sx={{ p: 3, mt: 3 }}>
                 <Typography variant="h5">{isEditing ? "Update Task" : "Create Task"}</Typography>
                 <form onSubmit={handleSubmit}>

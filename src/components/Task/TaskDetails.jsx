@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import TaskForm from "./TaskForm";
-import axiosInstance from "../../axiosInstance";
+import axiosInstance from "../../../axiosInstance";
 
 const TaskDetails = () => {
     const { id } = useParams();

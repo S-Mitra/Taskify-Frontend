@@ -14,11 +14,11 @@ const TaskFilter = ({ setFilters }) => {
 
   return (
     <Box sx={{ my: 2, p: 2, bgcolor: "background.paper", borderRadius: 2, boxShadow: 2 }}>
-      <Grid container spacing={2} alignItems="center">
-        
+      <Grid container spacing={2} alignItems="center" justifyContent="space-between">
+      <Grid container spacing={2} size={8} alignItems="center">
         {/* Status Filter */}
-        <Grid item xs={12} sm={5}>
-          <FormControl fullWidth>
+        <Grid item xs={12} sm={5} size={4}>
+          <FormControl fullWidth size="small">
             <InputLabel>Status</InputLabel>
             <Select
               value={selectedStatus}
@@ -32,8 +32,8 @@ const TaskFilter = ({ setFilters }) => {
         </Grid>
 
         {/* Priority Filter */}
-        <Grid item xs={12} sm={5}>
-          <FormControl fullWidth>
+        <Grid item xs={12} sm={5} size={4}>
+          <FormControl fullWidth size="small">
             <InputLabel>Priority</InputLabel>
             <Select
               value={selectedPriority}
@@ -46,7 +46,7 @@ const TaskFilter = ({ setFilters }) => {
             </Select>
           </FormControl>
         </Grid>
-
+</Grid>
         {/* Apply Filters Button */}
         <Grid item xs={12} sm={2}>
           <Button variant="contained" color="primary" fullWidth onClick={handleFilterChange}>

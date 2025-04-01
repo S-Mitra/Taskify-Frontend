@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom"; // For navigation
-import axiosInstance from "../../axiosInstance";
+import axiosInstance from "../../../axiosInstance";
 import TaskFilter from "./TaskFilter";
-import { Grid, Card, CardContent, Typography, Button } from "@mui/material";
+import { Grid, Card, CardContent, Typography, IconButton, Button } from "@mui/material";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import ModeOutlinedIcon from '@mui/icons-material/ModeOutlined';
 
 const TaskList = () => {
     const [tasks, setTasks] = useState([]);
@@ -35,7 +37,7 @@ const TaskList = () => {
     };
 
     return (
-        <div>
+        <div style={{margin: "20px"}}>
             <TaskFilter setFilters={setFilters} />
             <Grid container spacing={2}>
                 {tasks.map((task) => (
@@ -43,16 +45,29 @@ const TaskList = () => {
                         <Card>
                             <CardContent>
                                 <Typography variant="h6">{task.title}</Typography>
-                                <Typography variant="h6">{task.status}</Typography>
-                                <Typography variant="h6">{task.priority}</Typography>
-                                <Typography variant="body2">Due: {task.dueDate}</Typography>
-                                <Button variant="contained" color="primary" onClick={() => navigate(`/tasks/${task.id}`)}>Edit</Button>
-                                <Button variant="contained" color="primary" onClick={() => handleDelete(task.id)}>Delete</Button>
+                                <Typography variant="body2">{task.status} - {task.priority}</Typography>
+                                <Grid item xs={12} sm={2} sx={{
+                                    justifyContent: 'flex-end',
+                                    flexDirection: 'row',
+                                    display: 'flex',
+                                    width: '100%'
+                                }}>
+                                    <IconButton variant="contained" color="primary" onClick={() => navigate(`/tasks/${task.id}`)}>
+                                        <ModeOutlinedIcon fontSize="small" />
+                                    </IconButton>
+                                    <IconButton variant="contained" color="primary" onClick={() => handleDelete(task.id)}>
+                                        <DeleteOutlineIcon fontSize="small" />
+                                    </IconButton>
+                                </Grid>
+
                             </CardContent>
                         </Card>
                     </Grid>
                 ))}
             </Grid>
+            <Button type="submit" variant="contained" color="primary" onClick={() => navigate(`/tasks/new`)}>
+                Create Task
+            </Button>
         </div>
     );
 };
