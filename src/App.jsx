@@ -6,11 +6,13 @@ import { useContext } from "react";
 import AuthContext from "./AuthContext";
 import Login from "./components/Auth/Login";
 import Signup from "./components/Auth/Signup";
+import Header from "./components/Header";
 
 const App = () => {
     const { token } = useContext(AuthContext);
     return (
         <Router>
+            <Header /> 
             <Routes>
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />

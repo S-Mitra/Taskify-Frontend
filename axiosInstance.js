@@ -8,10 +8,10 @@ const axiosInstance = axios.create({
   },
 });
 
-axiosInstance.interceptors.request.use((req) => {
-  const token = localStorage.getItem("token");
-  if (token) req.headers.Authorization = token;
-  return req;
+axiosInstance.interceptors.request.use((config) => {
+  const token = localStorage.getItem("token"); // 👈 Retrieve token
+  if (token) config.headers.Authorization = `Bearer ${token}`;
+  return config;
 });
 
 export default axiosInstance;

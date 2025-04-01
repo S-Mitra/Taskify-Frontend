@@ -39,6 +39,9 @@ const TaskList = () => {
     return (
         <div style={{margin: "20px"}}>
             <TaskFilter setFilters={setFilters} />
+            <Button sx={{marginBottom: "20px"}} type="submit" variant="contained" color="primary" onClick={() => navigate(`/tasks/new`)}>
+                Create Task
+            </Button>
             <Grid container spacing={2}>
                 {tasks.map((task) => (
                     <Grid item xs={12} sm={6} md={4} key={task._id}>
@@ -65,9 +68,6 @@ const TaskList = () => {
                     </Grid>
                 ))}
             </Grid>
-            <Button type="submit" variant="contained" color="primary" onClick={() => navigate(`/tasks/new`)}>
-                Create Task
-            </Button>
         </div>
     );
 };
