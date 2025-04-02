@@ -22,7 +22,9 @@ export const AuthProvider = ({ children }) => {
   const login = (newToken) => {
     localStorage.setItem("token", newToken);
     setToken(newToken);
-    setUser(jwtDecode(newToken));
+    const userDetail = jwtDecode(newToken);
+    console.log("userDetail",userDetail)
+    setUser(userDetail);
   };
 
   const logout = () => {

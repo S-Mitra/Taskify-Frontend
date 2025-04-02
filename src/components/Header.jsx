@@ -14,7 +14,7 @@ const Header = () => {
         
         {user ? (
           <>
-            <Typography sx={{ marginRight: 2 }}>Hello, {user.username}</Typography>
+            <Typography sx={{ marginRight: 2 }}>Hello, {user.name}</Typography>
             <Button color="inherit" onClick={logout}>Logout</Button>
           </>
         ) : (
